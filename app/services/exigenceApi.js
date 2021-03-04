@@ -1,10 +1,10 @@
-class ProjetAPI extends BaseAPIService{
+class ExigenceAPI extends BaseAPIService{
     constructor() {
-        super("Projets");
+        super("Exigences");
     };
 
-    getAll() {
-        return fetchJSON(this.url);
+    getAllByProj(id) {
+        return fetchJSON(`${this.url}/Proj/${id}`);
     };
 
     getById(id) {
@@ -16,21 +16,21 @@ class ProjetAPI extends BaseAPIService{
         return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: this.headers });
     };
 
-    insert(projet) {
+    insert(exigence) {
         this.headers.set( 'Content-Type', 'application/json' );
         return fetch(this.url, {
             method: 'POST',
             headers: this.headers,
-            body: JSON.stringify({nom: projet.nom, chefProjetId: projet.chefProjet.id})
+            body: JSON.stringify({description: exigence.description, isFonctionnel: exigence.isFonctionnel, nonFonctionnel: exigence.nonFonctionnel, projetId: exigence.projetId})
         });
     };
 
-    update(projet){
+    update(exigence){
         this.headers.set( 'Content-Type', 'application/json' );
-        return fetch(`${this.url}/${projet.id}`, {
+        return fetch(`${this.url}/${exigence.id}`, {
             method: 'PUT',
             headers: this.headers,
-            body: JSON.stringify({nom: projet.nom, chefProjetId: projet.chefProjet.id})
+            body: JSON.stringify({description: exigence.description, isFonctionnel: exigence.isFonctionnel, nonFonctionnel: exigence.nonFonctionnel})
         });
     }
 }

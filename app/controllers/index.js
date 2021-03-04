@@ -63,7 +63,7 @@ class IndexController extends BaseController {
     }
 
     async insertProjet(){
-        $("#modal-crud-projet .modal-title").innerText = "Mettre à jour le Projet";
+        $("#modal-crud-projet .modal-title").innerText = "Créer un Projet";
 
         this.projet = {nom: "", chefProjet: { id: 0 } }
         let utilisateurs = await this.model.getAllUtilisateurs();
@@ -86,11 +86,9 @@ class IndexController extends BaseController {
     }
 
     async validateProjet(){
-        console.log(this.projet)
         this.projet.nom = $("#inputProjetNom").value;
 
         if(this.projet.chefProjet.id !== 0 && !!this.projet.nom){
-            console.log(this.projet.id);
             if(this.projet?.id){
                 await this.model.updateProjet(this.projet);
             }else if (this.projet){

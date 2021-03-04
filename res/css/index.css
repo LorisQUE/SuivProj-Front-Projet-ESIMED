@@ -31,3 +31,7 @@ body{
     min-width: 25em;
     background-color:  #f4f6f6 !important;
 }
+
+.dropdown-content li > a, .dropdown-content li > span {
+    color: #a93226;
+}

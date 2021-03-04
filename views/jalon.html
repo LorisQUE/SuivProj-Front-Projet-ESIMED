@@ -1,0 +1,44 @@
+<div class="container">
+    <h3 id="title-jalon">Jalons Placeholder</h3>
+    <a class="waves-effect waves-light btn" onclick="navigate('projet');"><i class="material-icons left">arrow_back</i>Retour</a><br/>
+    <div id="jalons-liste" class="list-card"></div>
+    <a class="waves-effect waves-light btn" id="ajout-projet" onclick="exigenceController.insertJalon()">Créer un Jalon</a>
+</div>
+
+
+<!-- Modal Structure Pour la modification de exigence -->
+<div id="modal-crud-exigence" class="modal" style="min-height: 30em;">
+    <div class="modal-content">
+        <h4 class="modal-title">Placeholder titre</h4>
+        <div class="row">
+            <div class="col s4">
+                <label for="inputExigenceDesc">Description</label>
+                <textarea id="inputExigenceDesc" rows="7" cols="50" type="text" class="input-field" style="resize: none; height: auto;"></textarea>
+            </div>
+            <div class=" col s1"></div>
+            <div class=" col s2 input-field">
+                <p>
+                    <label>
+                        <input id="checkbox-fonctionnel" type="checkbox"/>
+                        <span>Est Fonctionnel</span>
+                    </label>
+                </p>
+            </div>
+            <div class=" col s1"></div>
+            <div class=" col s3 input-field">
+                <select id="select-nonfonctionnel">
+                    <option value="donnees">Données</option>
+                    <option value="performances">Performances</option>
+                    <option value="interface utilisateur">Interfaces Utilisateur</option>
+                    <option value="qualite">Qualité</option>
+                    <option value="service">Service</option>
+                </select>
+                <label>Objectif non fonctionnel</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a id="btn-valid-projet" class="waves-effect waves-light btn" onclick="exigenceController.validateExigence()"><i class="material-icons left">check</i>Valider</a>
+            <a class="modal-close waves-effect waves-teal btn-flat">Quitter</a>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@ class Model {
     constructor() {
         this.projetApi = new ProjetAPI();
         this.utilisateurApi = new UtilisateurAPI();
+        this.exigenceApi = new ExigenceAPI();
     };
     
     /*
@@ -35,10 +36,37 @@ class Model {
     REGION DES UTILISATEURS
     */
    async getAllUtilisateurs() {
-    let utilisateurs = [];
-    for (let u of await this.utilisateurApi.getAll()) {
-        utilisateurs.push(u);
+        let utilisateurs = [];
+        for (let u of await this.utilisateurApi.getAll()) {
+            utilisateurs.push(u);
+        }
+        return utilisateurs;
+    };
+    /*
+    REGION DES EXIGENCES
+    */
+
+   async getAllExigences(id){
+        let exigences = [];
+        for (let exigence of await this.exigenceApi.getAllByProj(id)) {
+            exigences.push(exigence);
+        }
+        return exigences;
     }
-    return utilisateurs;
-};
+
+    async getExigenceById(id){
+        return this.exigenceApi.getById(id);
+    }
+
+    async deleteExigence(id){
+        return this.exigenceApi.delete(id).then(res => res.status);
+    }
+
+    async insertExigence(exigence){
+        return this.exigenceApi.insert(exigence).then(res => res.status);
+    }
+
+    async updateExigence(exigence) {
+        return this.exigenceApi.update(exigence).then(res => res.status);
+    };
 }
