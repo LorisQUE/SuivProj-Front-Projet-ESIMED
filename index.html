@@ -10,6 +10,13 @@
     <link rel="stylesheet" type="text/css" href="res/css/index.css"/>
 </head>
 <body>
+    <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo center" onclick="navigate('index')">SuivProj</a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+          </ul>
+        </div>
+      </nav>
     <div id="content"></div>
 
     <!-- Modal Structure Pour la modification de liste -->
@@ -18,7 +25,7 @@
             <h4 class="modal-title">Placeholder titre</h4>
             <div class="row">
                 <div class="col s5">
-                    <label for="inputProjetNom" class="validate">Nom du Projet</label>
+                    <label for="inputProjetNom">Nom du Projet</label>
                     <input id="inputProjetNom" type="text" class="input-field">
                 </div>
                 <div class="col s1"></div>
@@ -28,7 +35,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a id="btn-valid-projet" class="waves-effect waves-light btn" onclick=" "><i class="material-icons left">check</i>Valider</a>
+                <a id="btn-valid-projet" class="waves-effect waves-light btn" onclick="indexController.validateProjet()"><i class="material-icons left">check</i>Valider</a>
                 <a class="modal-close waves-effect waves-teal btn-flat">Quitter</a>
             </div>
         </div>

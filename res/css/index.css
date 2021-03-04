@@ -1,5 +1,18 @@
+body{
+    height: 100%;
+    background-color: #f4fefe;
+}
+
 .nav-wrapper { 
-    background: linear-gradient(0.25turn, #1300BF , #1900FF, #1700E6); 
+    background-color: #6d071a;
+}
+
+.btn {
+    background-color: #a93226  ;
+}
+
+.btn:hover{
+    background-color: #7b241c;
 }
 
 .brand-logo { 
@@ -16,5 +29,5 @@
     padding: 1em 2em;
     margin: 1em;
     min-width: 25em;
-    cursor: pointer;
+    background-color:  #f4f6f6 !important;
 }

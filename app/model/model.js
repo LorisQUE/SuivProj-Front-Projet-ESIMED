@@ -23,9 +23,13 @@ class Model {
         return this.projetApi.delete(id).then(res => res.status);
     }
 
-    async postProjet(projet){
+    async insertProjet(projet){
         return this.projetApi.insert(projet).then(res => res.status);
     }
+
+    async updateProjet(projet) {
+        return this.projetApi.update(projet).then(res => res.status);
+    };
 
     /*
     REGION DES UTILISATEURS

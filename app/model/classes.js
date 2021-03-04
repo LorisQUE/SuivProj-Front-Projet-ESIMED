@@ -1,4 +1,5 @@
 // Business classes definitions
+//Not used ^^
 
 class Utilisateur {
     constructor(id, trigramme, prenom, nom, mail) {
