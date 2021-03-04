@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SuivProj</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="res/css/index.css"/>
+</head>
+<body>
+    <div id="content"></div>
+
+    <!-- Modal Structure Pour la modification de liste -->
+    <div id="modal-crud-projet" class="modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Placeholder titre</h4>
+            <div class="row">
+                <div class="col s5">
+                    <label for="inputProjetNom" class="validate">Nom du Projet</label>
+                    <input id="inputProjetNom" type="text" class="input-field">
+                </div>
+                <div class="col s1"></div>
+                <div class=" col s5 input-field">
+                <label for="inputProjetChef" class="validate">Chef de Projet</label>
+                <input type="text" id="inputProjetChef" class="autocomplete">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="btn-valid-projet" class="waves-effect waves-light btn" onclick=" "><i class="material-icons left">check</i>Valider</a>
+                <a class="modal-close waves-effect waves-teal btn-flat">Quitter</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="application/ecmascript" src="app/tools.js"></script>
+    <script type="application/ecmascript" src="app/model/classes.js"></script>
+    <script type="application/ecmascript" src="app/model/model.js"></script>
+    <script type="application/ecmascript" src="app/controllers/basecontroller.js"></script>
+    <script type="application/ecmascript" src="app/services/baseapiservice.js"></script>
+    <script type="application/ecmascript" src="app/services/projetApi.js"></script>
+    <script type="application/ecmascript" src="app/services/utilisateurApi.js"></script>
+    <script>navigate("index")</script>
+</body>
+</html>

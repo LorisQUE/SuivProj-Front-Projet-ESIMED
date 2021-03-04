@@ -1,0 +1,20 @@
+.nav-wrapper { 
+    background: linear-gradient(0.25turn, #1300BF , #1900FF, #1700E6); 
+}
+
+.brand-logo { 
+    margin-left: 10px; 
+}
+
+.list-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.list-card .card {
+    padding: 1em 2em;
+    margin: 1em;
+    min-width: 25em;
+    cursor: pointer;
+}
