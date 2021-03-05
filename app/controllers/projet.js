@@ -56,11 +56,11 @@ class ProjetController extends BaseController {
     }
 
     async openJalon(){
-
+      navigate('jalon');
     }
 
     async openTache(){
-
+      navigate('tache');
     }
 
 }

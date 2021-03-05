@@ -5,39 +5,23 @@
     <a class="waves-effect waves-light btn" id="ajout-projet" onclick="exigenceController.insertJalon()">Créer un Jalon</a>
 </div>
 
-
-<!-- Modal Structure Pour la modification de exigence -->
-<div id="modal-crud-exigence" class="modal" style="min-height: 30em;">
+<!-- Modal Structure Pour la modification de liste -->
+<div id="modal-crud-jalon" class="modal">
     <div class="modal-content">
         <h4 class="modal-title">Placeholder titre</h4>
         <div class="row">
-            <div class="col s4">
-                <label for="inputExigenceDesc">Description</label>
-                <textarea id="inputExigenceDesc" rows="7" cols="50" type="text" class="input-field" style="resize: none; height: auto;"></textarea>
+            <div class="col s5">
+                <label for="inputLibelleJalon">Libelle du Jalon</label>
+                <input id="inputLibelleJalon" type="text" class="input-field">
             </div>
-            <div class=" col s1"></div>
-            <div class=" col s2 input-field">
-                <p>
-                    <label>
-                        <input id="checkbox-fonctionnel" type="checkbox"/>
-                        <span>Est Fonctionnel</span>
-                    </label>
-                </p>
-            </div>
-            <div class=" col s1"></div>
-            <div class=" col s3 input-field">
-                <select id="select-nonfonctionnel">
-                    <option value="donnees">Données</option>
-                    <option value="performances">Performances</option>
-                    <option value="interface utilisateur">Interfaces Utilisateur</option>
-                    <option value="qualite">Qualité</option>
-                    <option value="service">Service</option>
-                </select>
-                <label>Objectif non fonctionnel</label>
+            <div class="col s1"></div>
+            <div class=" col s5 input-field">
+            <label for="inputReponsable" class="validate">Responsable du Jalon</label>
+            <input type="text" id="inputReponsable" class="autocomplete">
             </div>
         </div>
         <div class="modal-footer">
-            <a id="btn-valid-projet" class="waves-effect waves-light btn" onclick="exigenceController.validateExigence()"><i class="material-icons left">check</i>Valider</a>
+            <a id="btn-valid-projet" class="waves-effect waves-light btn" onclick="jalonController.validateJalon()"><i class="material-icons left">check</i>Valider</a>
             <a class="modal-close waves-effect waves-teal btn-flat">Quitter</a>
         </div>
     </div>

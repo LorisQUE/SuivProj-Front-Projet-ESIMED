@@ -1,6 +1,15 @@
 class JalonAPI extends BaseAPIService{
     constructor() {
-        super("Exigences");
+        super("Jalons");
+    };
+    
+    getAllByProj(id) {
+        return fetchJSON(`${this.url}/Proj/${id}`);
+    };
+    
+    delete(id) {
+        this.headers.delete('Content-Type');
+        return fetch(`${this.url}/${id}`, { method: 'DELETE', headers: this.headers });
     };
 
     insert(jalon) {

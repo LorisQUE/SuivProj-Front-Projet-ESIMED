@@ -3,6 +3,7 @@ class Model {
         this.projetApi = new ProjetAPI();
         this.utilisateurApi = new UtilisateurAPI();
         this.exigenceApi = new ExigenceAPI();
+        this.jalonApi = new JalonAPI();
     };
     
     /*
@@ -42,6 +43,11 @@ class Model {
         }
         return utilisateurs;
     };
+
+    async getUtilisateurById(id){
+        return this.utilisateurApi.getById(id);
+    }
+
     /*
     REGION DES EXIGENCES
     */
@@ -69,4 +75,20 @@ class Model {
     async updateExigence(exigence) {
         return this.exigenceApi.update(exigence).then(res => res.status);
     };
+
+    /*
+    REGION DES JALONS
+    */
+
+   async getAllJalons(id){
+    let jalons = [];
+    for (let jalon of await this.jalonApi.getAllByProj(id)) {
+        jalons.push(jalon);
+    }
+    return jalons;
+    }
+
+    async deleteJalon(id){
+        return this.jalonApi.delete(id).then(res => res.status);
+    }
 }
