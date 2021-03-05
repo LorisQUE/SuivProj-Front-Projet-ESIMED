@@ -24,4 +24,13 @@ class JalonAPI extends BaseAPIService{
             body: JSON.stringify({libelle: jalon.libelle, responsableId: jalon.responsableId, projetId: jalon.projetId})
         });
     };
+
+    update(jalon){
+        this.headers.set( 'Content-Type', 'application/json' );
+        return fetch(`${this.url}/${jalon.id}`, {
+            method: 'PUT',
+            headers: this.headers,
+            body: JSON.stringify({libelle: jalon.libelle, responsableId: jalon.responsableId, projetId: jalon.projetId})
+        });
+    }
 }

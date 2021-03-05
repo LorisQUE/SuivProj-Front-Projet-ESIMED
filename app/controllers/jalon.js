@@ -20,7 +20,6 @@ class JalonController extends BaseController {
             let dateLivrP = (new Date(jalon.dateLivraisonPrevue)).toLocaleDateString();
             let dateLivrR = (new Date(jalon.dateLivraisonReelle)).toLocaleDateString();
             
-            console.log(responsable);
             content += `
               <div id="jalon-card-${jalon.id}" class="card">
                 <div class="card-content">
@@ -35,7 +34,7 @@ class JalonController extends BaseController {
                   </p>
                   <br/>
                   <a class="btn" onclick=""><i class="material-icons">arrow_forward</i></a>
-                  <a class="btn" onclick="jalonController.updateJalon('${jalon.id}'"><i class="material-icons">edit</i></a>
+                  <a class="btn" onclick="jalonController.updateJalon('${jalon.id}')"><i class="material-icons">edit</i></a>
                   <a class="btn" onclick="jalonController.deleteJalon('${jalon.id}')"><i class="material-icons">delete_forever</i></a>
                   </div>
               </div>`;
@@ -54,9 +53,24 @@ class JalonController extends BaseController {
     
     async updateJalon(id){
         this.jalon = await this.model.getJalonById(id);
-        console.log(this.jalon);
-
+        let responsable = await this.model.getUtilisateurById(this.jalon.responsableId);
         $("#modal-crud-jalon .modal-title").innerText = "Mettre à jour le Jalon";
+        
+        let utilisateurs = await this.model.getAllUtilisateurs();
+        let dataTrigramme = utilisateurs.map(u => u.trigramme );
+        let dataAutocomplete = {};
+
+        dataTrigramme.forEach(e => {
+            dataAutocomplete[e] = null;
+        });
+
+        var elem = $('#inputReponsable');
+        M.Autocomplete.init(elem, { data:dataAutocomplete,  onAutocomplete: e =>{
+            let res = utilisateurs.filter(u => u.trigramme == e)[0];
+            this.jalon.responsableId = res.id;
+        }});
+        $("#inputLibelleJalon").value = this.jalon.libelle;
+        $("#inputReponsable").value = responsable.trigramme;
         this.getModal("#modal-crud-jalon").open();
     }
 
@@ -87,7 +101,6 @@ class JalonController extends BaseController {
 
     async validateJalon(){
         this.jalon.libelle = $("#inputLibelleJalon").value;
-        console.log(this.jalon)
         if(this.jalon.responsableId && !!this.jalon.libelle){
             if(this.jalon?.id){
                 await this.model.updateJalon(this.jalon);
