@@ -10,10 +10,8 @@ class JalonController extends BaseController {
     
     async showJalon(){
         $("#title-jalon").innerText = `Jalon du projet ${this.projet.nom}`;
-      
-
+        
         this.jalons = await this.model.getAllJalons(this.projet.id);
-        console.log(this.jalons);
         let content = "";
 
         for (const jalon of this.jalons) {
@@ -37,7 +35,7 @@ class JalonController extends BaseController {
                   </p>
                   <br/>
                   <a class="btn" onclick=""><i class="material-icons">arrow_forward</i></a>
-                  <a class="btn" onclick=""><i class="material-icons">edit</i></a>
+                  <a class="btn" onclick="jalonController.updateJalon('${jalon.id}'"><i class="material-icons">edit</i></a>
                   <a class="btn" onclick="jalonController.deleteJalon('${jalon.id}')"><i class="material-icons">delete_forever</i></a>
                   </div>
               </div>`;
@@ -50,6 +48,58 @@ class JalonController extends BaseController {
         if(confirm("Êtes-vous sûr de vouloir supprimer ce Jalon, toutes les tâches seront également supprimer ? ")){
             this.model.deleteJalon(id);
             e.parentNode.removeChild(e);
+        }
+    }
+
+    
+    async updateJalon(id){
+        this.jalon = await this.model.getJalonById(id);
+        console.log(this.jalon);
+
+        $("#modal-crud-jalon .modal-title").innerText = "Mettre à jour le Jalon";
+        this.getModal("#modal-crud-jalon").open();
+    }
+
+    async insertJalon(){
+        $("#modal-crud-jalon .modal-title").innerText = "Créer un Jalon";
+
+
+
+        this.jalon = {libelle: "", responsableId: null, projetId: this.projet.id }
+        let utilisateurs = await this.model.getAllUtilisateurs();
+        let dataTrigramme = utilisateurs.map(u => u.trigramme );
+        let dataAutocomplete = {};
+
+        dataTrigramme.forEach(e => {
+            dataAutocomplete[e] = null;
+        });
+
+        var elem = $('#inputReponsable');
+        M.Autocomplete.init(elem, { data:dataAutocomplete,  onAutocomplete: e =>{
+            let res = utilisateurs.filter(u => u.trigramme == e)[0];
+            this.jalon.responsableId = res.id;
+        }});
+
+        $("#inputLibelleJalon").value = "";
+        $("#inputReponsable").value = "";
+        this.getModal("#modal-crud-jalon").open();
+    }
+
+    async validateJalon(){
+        this.jalon.libelle = $("#inputLibelleJalon").value;
+        console.log(this.jalon)
+        if(this.jalon.responsableId && !!this.jalon.libelle){
+            if(this.jalon?.id){
+                await this.model.updateJalon(this.jalon);
+            }else if (this.jalon){
+                await this.model.insertJalon(this.jalon);
+            }
+
+            this.getModal("#modal-crud-jalon").close();
+            this.jalon = {};
+            this.showJalon();
+        } else {
+            alert("Veuillez saisir un libelle de jalon et un responsable");
         }
     }
 

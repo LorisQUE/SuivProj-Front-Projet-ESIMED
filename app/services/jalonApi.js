@@ -6,6 +6,10 @@ class JalonAPI extends BaseAPIService{
     getAllByProj(id) {
         return fetchJSON(`${this.url}/Proj/${id}`);
     };
+
+    getById(id) {
+        return fetchJSON(`${this.url}/${id}`);
+    };
     
     delete(id) {
         this.headers.delete('Content-Type');
@@ -17,7 +21,7 @@ class JalonAPI extends BaseAPIService{
         return fetch(this.url, {
             method: 'POST',
             headers: this.headers,
-            body: JSON.stringify({libelle: jalon.libelle, responsableId: jalon.isFonctionnel, projetId: jalon.projetId})
+            body: JSON.stringify({libelle: jalon.libelle, responsableId: jalon.responsableId, projetId: jalon.projetId})
         });
     };
 }

@@ -80,6 +80,10 @@ class Model {
     REGION DES JALONS
     */
 
+    async getJalonById(id){
+        return this.jalonApi.getById(id);
+    }
+
    async getAllJalons(id){
     let jalons = [];
     for (let jalon of await this.jalonApi.getAllByProj(id)) {
@@ -91,4 +95,12 @@ class Model {
     async deleteJalon(id){
         return this.jalonApi.delete(id).then(res => res.status);
     }
+
+    async insertJalon(jalon){
+        return this.jalonApi.insert(jalon).then(res => res.status);
+    }
+
+    async updateJalon(jalon) {
+        return this.jalonApi.update(jalon).then(res => res.status);
+    };
 }

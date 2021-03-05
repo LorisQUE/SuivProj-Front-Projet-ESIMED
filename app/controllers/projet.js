@@ -1,18 +1,19 @@
 class ProjetController extends BaseController {
     constructor() {
         super();
-        this.projet = self.projetSelected;
+        this.projet = {}
         this.showProjet();
     }
 
     
     async showProjet(){
+      //On récupère les valeurs à jours du projet
+      this.projet = await this.model.getProjetById(self.projetSelected.id);
       $("#title-projet").innerText = this.projet.nom;
       $("#detail-projet-chef").innerText = `${this.projet.chefProjet.nom} ${this.projet.chefProjet.prenom} - ${this.projet.chefProjet.trigramme} - ${this.projet.chefProjet.mail}`;
       let dateDebut = (new Date(this.projet.dateDebut)).toLocaleDateString();
       let dateFinT = (new Date(this.projet.dateFinTheorique)).toLocaleDateString();
       let dateFinR = (new Date(this.projet.dateFinReelle)).toLocaleDateString();
-      console.log(Date.parse(dateDebut))
       let exigence = `
         <div class="card">
           <div class="card-content">
